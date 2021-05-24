@@ -39,7 +39,7 @@
 
   <% items.push divider: "Other" %>
 
-  <% if @opss_incident_management_team %>
+  <% if @opss_incident_management_team && !current_user.is_opss? %>
     <% items.push text: @opss_incident_management_team.name,
                   value: @opss_incident_management_team.id,
                   checked: investigation.owner == @opss_incident_management_team,
