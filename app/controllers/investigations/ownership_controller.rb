@@ -80,7 +80,7 @@ private
 
   def get_potential_assignees
     @selectable_users = [@investigation.owner_user, current_user].uniq.compact
-    @team_members = current_user.team.users.active.includes(:team)
+    @team_members = current_user.team.users.active.includes(:team) - @selectable_users
     @opss_incident_management_team = Team.find_by(name: "OPSS Incident Management")
     @selectable_teams = [Team.get_visible_teams(current_user), @investigation.owner_team].flatten.uniq.compact - [current_user.team, @opss_incident_management_team]
     @other_teams = Team.not_deleted
