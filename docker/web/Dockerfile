@@ -3,7 +3,7 @@ FROM ruby:2.7.3
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 RUN curl -sS https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 

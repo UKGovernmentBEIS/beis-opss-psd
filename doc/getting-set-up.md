@@ -22,7 +22,7 @@ The application requires several backing services to run. Install these:
 Some of the dependencies are easier to install via Docker. [Install Docker](https://docs.docker.com/install/) if you have not already done so, and then run:
 
 ```bash
-docker-compose build antivirus
+docker-compose up antivirus db elasticsearch redis
 ```
 
 ### 2. Install Ruby and gem dependencies
