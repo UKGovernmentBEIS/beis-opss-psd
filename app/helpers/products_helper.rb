@@ -6,7 +6,7 @@ module ProductsHelper
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
     params.require(:product).permit(
-      :brand, :name, :subcategory, :category, :product_code, :webpage, :description, :batch_number, :country_of_origin, :barcode, :authenticity, :when_placed_on_market, :affected_units_status, :number_of_affected_units, :exact_units, :approx_units, :customs_code, :has_markings, markings: []
+      :brand, :name, :subcategory, :category, :product_code, :webpage, :description, :batch_number, :country_of_origin, :barcode, :authenticity, :when_placed_on_market, :affected_units_status, :number_of_affected_units, :exact_units, :approx_units, :customs_code, :has_markings, :format, markings: []
     ).with_defaults(markings: [])
   end
 
@@ -14,9 +14,13 @@ module ProductsHelper
     params.permit(:sort, :q)
   end
 
-  def search_for_products(page_size = Product.count)
-    Product.full_search(search_query)
+  def search_for_products(page_size = Product.count, include_models = [])
+    Product.includes(include_models).full_search(search_query)
       .page(params[:page]).per_page(page_size).records
+  end
+
+  def search_for_products_for_export(include_models = [])
+    Product.includes(include_models).full_search(search_query).records
   end
 
   def sorting_params

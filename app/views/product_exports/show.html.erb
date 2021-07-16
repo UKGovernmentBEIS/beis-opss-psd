@@ -1,0 +1,3 @@
+<% if @product_export %>
+  Click <%= link_to "here", rails_blob_path(@product_export.export_file, disposition: 'attachment') %> to download your product export.
+<% end %>
